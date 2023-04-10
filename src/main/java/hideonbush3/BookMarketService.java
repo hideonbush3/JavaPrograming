@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class BookMarketService {
     private Scanner sc = null;
+    private MemberShip m = null;    // 회원정보 저장용
 
     public BookMarketService(){
         sc = new Scanner(System.in);
@@ -29,9 +30,11 @@ public class BookMarketService {
     }
 
     // 입력한 메뉴에 따라 작업 분기
-    public void processMenu(String menu){
-        switch (menu){
-            case "1": System.out.printf("고객정보 확인%n"); break;
+    public void processMenu(String menu){switch (menu){
+            case "1":
+                System.out.printf("고객정보 확인%n");
+                System.out.println(m);
+                break;
             case "2": System.out.printf("장바구니 상품 목록 보기%n"); break;
             case "3": System.out.printf("장바구니 비우기%n"); break;
             case "4": System.out.printf("바구니에 항목 추가하기%n"); break;
@@ -42,6 +45,17 @@ public class BookMarketService {
                 System.out.println("프로그램을 종료합니다");
                 System.exit(0);break;   // 정상 종료
             default: System.out.println("잘못 입력하셨습니다.");
-        }
+        }}
+
+    // 회원 등록
+    public void registerMember(){
+        System.out.print("회원이름은? ");
+        String name = sc.next();
+        System.out.print("이메일은? ");
+        String email = sc.next();
+        System.out.print("전화번호는? ");
+        String hp = sc.next();
+
+        m = new MemberShip(230410, name, email, hp);
     }
 }
