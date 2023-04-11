@@ -29,17 +29,18 @@ public class J16OOP {
     // Child c = (Child) p  // 수동형변환. 멤버의 개수가 같거나 많아진다.
 
     public static void main(String[] args) {
-//        SCV scv1 = new SCV();
-        Unit scv1 = new SCV();  // 다형성 : upcasting
+        //SCV scv1 = new SCV();
+        Unit scv1 = new SCV();   // 다형성 : upcasting - scv -> unit
+
         Marine marine1 = new Marine();
         Firebat firebat1 = new Firebat();
         Medic medic1 = new Medic();
 
         System.out.println(scv1.life);
         scv1.attack();
-//        scv1.collect()  // Unit 클래스에는 collect 메서드가 없음
-        ((SCV)scv1).collect();  // 다형성 : downcasting
-//        SCV 클래스에는 collect 메서드가 있으므로 Unit -> SCV로 변환
+        //scv1.collect();    // unit 클래스에는 collect 메서드가 없음
+        ((SCV) scv1).collect();  // 다형성 : downcasting
+        // scv에는 collect 메서드가 있으므로 unit -> scv 로 변환
 
         System.out.println(marine1.life);
         marine1.attack();
@@ -53,6 +54,11 @@ public class J16OOP {
         medic1.useHeal();
         medic1.useRestoration();
         medic1.useOpticalFlare();
+
+        // 한편, 부모클래스인 unit도 객체화 가능
+        Unit unit1 = new Unit();
+        System.out.println(unit1.life);
+        unit1.attack();
     }
 }
 
