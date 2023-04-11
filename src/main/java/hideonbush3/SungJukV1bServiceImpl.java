@@ -46,6 +46,24 @@ public class SungJukV1bServiceImpl implements SungJukV1bService{
     }
 
     public void removeSungJuk() {
+        String name;
+        System.out.print("삭제할 학생의 이름 입력 : ");
+        name = sc.next();
+        String agree;
+        for(int i = 0 ; i < sjs.length; i++){
+            if(sjs[i] != null && sjs[i].getName().equals(name)){
+                System.out.printf("%s 학생의 데이터를 삭제하려면 Y를 입력, 취소하려면 N을 입력하세요. ", name);
+                agree = sc.next();
+                if(agree.equalsIgnoreCase("Y")){
+                    sjs[i] = null;
+                    System.out.printf("%n%s 학생의 데이터가 삭제됐습니다.%n", name); break;
+                } else if(agree.equalsIgnoreCase("N")){
+                    System.out.printf("%n취소했습니다.%n"); break;
+                } else {
+                    System.out.printf("%n잘못 입력 하셨습니다.%n"); break;
+                }
+            }
+        }
     }
 
     public void modifySungJuk() {
