@@ -35,6 +35,21 @@ public class J18OOP {
         Firebat3 firebat = new Firebat3();
         firebat.attack();
         firebat.useStimpack();
+
+        // 다형성 사용
+        // 조상타입의 참조변수로 자손 객체를 다룬다!
+        // 인터페이스를 이용하면 구현관계에 있는
+        // 모든 클래스형으로 객체화 가능
+        Unit3Action unit = new SCV3();
+        unit.attack();
+        unit.move();
+        // unit.collect();  // 에러. Unit3Action 타입의 리모콘(참조변수) unit에는 collect() 버튼(기능)이 없다.
+
+        unit = new Marine3();
+        unit.attack();
+        unit.move();
+        // SCV3 scv = new SCV3();
+        // scv = new Marine3(); // 에러. 형제관계에서 다형성은 성립되지 않는다.
     }
 
 }
@@ -60,7 +75,9 @@ abstract class Unit3 {  // 유닛의 속성만 다루는 클래스
 
 interface Unit3Action {
     public abstract void attack();
-    public abstract void move();
+    // 어차피 interface의 메서드는 무조건 public abstract라서
+    // public abstract를 생략해도 컴파일러가 자동으로 추가해준다.
+    void move();
 }
 
 class SCV3 extends Unit3 implements Unit3Action {
