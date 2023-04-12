@@ -1,4 +1,4 @@
-package hideonbush3;
+package hideonbush3.project.bookmarket;
 
 public class Book {
     private String isbn;

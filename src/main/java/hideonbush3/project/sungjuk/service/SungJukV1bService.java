@@ -1,4 +1,6 @@
-package hideonbush3;
+package hideonbush3.project.sungjuk.service;
+
+import hideonbush3.project.sungjuk.model.SungJukVO;
 
 public interface SungJukV1bService {
 

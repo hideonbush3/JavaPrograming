@@ -1,4 +1,4 @@
-package hideonbush3;
+package hideonbush3.project;
 
 public class MemberShip {
     private int mno;

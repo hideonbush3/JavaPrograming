@@ -1,7 +1,7 @@
 package exams;
 
 
-import hideonbush3.SungJukVO;
+import hideonbush3.project.sungjuk.model.SungJukVO;
 
 import java.util.Scanner;
 

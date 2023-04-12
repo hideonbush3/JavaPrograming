@@ -1,4 +1,6 @@
-package hideonbush3;
+package hideonbush3.project.sungjuk;
+
+import hideonbush3.project.sungjuk.service.SungJukV1Service;
 
 public class SungJukV1Main {
     // 성적 처리프로그램 v1
