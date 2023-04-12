@@ -1,4 +1,4 @@
-package hideonbush3;
+package hideonbush3.project.sungjuk.model;
 
 // 클래스 작성 순서
 // 1. private 조건을 걸어서 캡슐화한 멤버변수 선언

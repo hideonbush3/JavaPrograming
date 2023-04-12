@@ -1,6 +1,4 @@
-package hideonbush3;
-
-import java.util.Scanner;
+package hideonbush3.project.bookmarket;
 
 public class BookMarket {
 

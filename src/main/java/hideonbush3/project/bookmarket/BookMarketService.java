@@ -1,4 +1,6 @@
-package hideonbush3;
+package hideonbush3.project.bookmarket;
+
+import hideonbush3.project.MemberShip;
 
 import java.util.Scanner;
 
