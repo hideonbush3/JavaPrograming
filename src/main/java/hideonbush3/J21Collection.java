@@ -48,6 +48,10 @@ public class J21Collection {
         }
         System.out.println();
 
+        // 특정요소 제거 : remove(값)
+        names.remove("수지");
+        System.out.println("수지 삭제 후 마지막 사람 " + names.get(names.size() - 1));
+
         // 데이터 검색
         // 위치로 찾음 : get(위치), indexOf
         // 값으로 찾음 : foreach, contains
