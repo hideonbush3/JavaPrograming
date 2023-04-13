@@ -1,5 +1,6 @@
 package hideonbush3;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
@@ -39,23 +40,29 @@ public class J23File {
         String fname = "c:/Java/info.txt";
 
         // 파일쓰기(문자 출력스트림) 객체 생성
+        FileWriter fw = null;
         try {
-            FileWriter fw = new FileWriter(fname);
+            fw = new FileWriter(fname);
 
             // 파일에 내용 쓰기
             fw.write(name + "\n");
             fw.write(height + "\n");
             fw.write(age + "\n");
 
-            // 파일쓰기가 끝나면 작업 종료
-            fw.close();
         } catch (Exception ex) {
             ex.getMessage();
+        } finally {
+            // 파일쓰기가 끝나면 작업 종료
+            if(fw != null)
+                try {
+                fw.close();
+            } catch (Exception ex) {}
         }
 
         // 파일에 저장된 데이터 화면에 출력 1
+        FileReader fr = null;
         try {
-            FileReader fr = new FileReader(fname);
+            fr = new FileReader(fname);
 
             int ch = 0;
             // 파일에서 하나의 문자를 읽어옴 - 아스키코드값으로 한문자씩 넘어옴
@@ -65,16 +72,19 @@ public class J23File {
                 System.out.print((char) ch);
             }
 
-            fr.close();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());;
+        } finally {
+            if (fr != null)
+                try{fr.close();} catch (Exception ex){}
         }
 
         // 파일에 저장된 데이터 화면에 출력 2
         // BufferedReader를 이용하면 입력속도를 높일 수 있음
+        BufferedReader br = null;
         try {
-            FileReader fr = new FileReader(fname);
-            BufferedReader br = new BufferedReader(fr);
+            fr = new FileReader(fname);
+            br = new BufferedReader(fr);
 
             while (br.ready()){ // 읽어올 데이터가 있는지 확인
                 // 만일 있다면 한 행을 읽어옴
@@ -85,6 +95,11 @@ public class J23File {
             fr.close();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            if (br != null)
+                try { br.close(); } catch (Exception ex) {}
+            if (fr != null)
+                try { fr.close(); } catch (Exception ex) {}
         }
     }
 }
