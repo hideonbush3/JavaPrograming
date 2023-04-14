@@ -43,7 +43,7 @@ public class J27JDBC {
             pstmt.setNString(2, author);
             pstmt.setInt(3, price);
             // SQL문 실행 후 결과 확인
-            int cnt = pstmt.executeUpdate();    // DML(insert, delete, update) 실행시 executeUpdate() 사용
+            int cnt = pstmt.executeUpdate();    // DML중 insert, delete, update 실행시 executeUpdate() 사용
             if (cnt != 0) System.out.println("데이터 넣기 성공");
 
         } catch (SQLException e) {
