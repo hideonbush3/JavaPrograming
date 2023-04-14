@@ -42,6 +42,7 @@ public class J23File {
         // 파일쓰기(문자 출력스트림) 객체 생성
         FileWriter fw = null;
         try {
+            // 파일 생성
             fw = new FileWriter(fname);
 
             // 파일에 내용 쓰기

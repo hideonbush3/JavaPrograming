@@ -31,7 +31,7 @@ public class J22Generic {
     // 우리에서 동물을 하나씩 빼냄
     // 하지만, 배열에 저장된 데이터를 빼낼때는
     // 적절한 형변환이 필요함!
-        Lion l1 = (Lion) zoo[0];    // downcasting, 조상 -> 자손 형변환 생략가능
+        Lion l1 = (Lion) zoo[0];    // downcasting, 조상 -> 자손 형변환 생략불가
         Tiger t1 = (Tiger) zoo[1];
         Zebra z1 = (Zebra) zoo[2];
 
@@ -41,7 +41,7 @@ public class J22Generic {
     // type-parameter (<>)를 이용해서 자료구조의
     // 데이터 유형을 미리 설정해 둠
 
-        // 이 사자우리에는 사자만 들어올 수 있어
+        // List<이 사자우리에는 사자만 들어올 수 있어> lionzoo = new ArrayList<>();
         List<Lion> lionzoo = new ArrayList<>();
 
         lionzoo.add(new Lion());
@@ -94,7 +94,7 @@ class Adds {
         return a + b;
     }
 
-    public <T> T add(T a, T b){ //
+    public <T> T add(T a, T b){
         T sum = null;
         if (a.getClass() == Integer.class){ // a변수의 클래스형이 Integer라면
             System.out.println("Integer add");
