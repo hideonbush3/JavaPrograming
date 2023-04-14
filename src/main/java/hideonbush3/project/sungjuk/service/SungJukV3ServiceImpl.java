@@ -64,10 +64,7 @@ public class SungJukV3ServiceImpl implements SungJukV1cService {
             case 3: readOneSungJuk(); break;
             case 4: modifySungJuk(); break;
             case 5: removeSungJuk(); break;
-            case 0:
-                // ArrayList에 저장된 모든 성적데이터를 파일에 기록 ( 메모리 -> HDD, SSD)
-                sjdao.writeSungjuk(sjs);
-                System.exit(0); break;
+            case 0: System.exit(0); break;
             default:
                 System.out.println("\n>> 잘못 입력하셨습니다! <<\n");
         }
@@ -86,6 +83,9 @@ public class SungJukV3ServiceImpl implements SungJukV1cService {
                     break;
                 }
             }
+
+            // ArrayList에 저장된 모든 성적데이터를 파일에 기록 ( 메모리 -> HDD, SSD)
+            sjdao.writeSungjuk(sjs);
         } catch (NullPointerException ex) {
         }
 
@@ -118,6 +118,8 @@ public class SungJukV3ServiceImpl implements SungJukV1cService {
                 return;
             }
         }
+        // ArrayList에 저장된 모든 성적데이터를 파일에 기록 ( 메모리 -> HDD, SSD)
+        sjdao.writeSungjuk(sjs);
     }
 
     public void readOneSungJuk() {
