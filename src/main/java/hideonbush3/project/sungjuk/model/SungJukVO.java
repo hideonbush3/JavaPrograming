@@ -22,6 +22,13 @@ public class SungJukVO {
     // 기본생성자
     public SungJukVO() {}
 
+    public SungJukVO(String name, int kor, int eng, int mat, int tot, double avg, char grd) {
+        this(name, kor, eng, mat);  // 본인 생성자 호출(코드 중복 제거)
+        this.tot = tot;
+        this.avg = avg;
+        this.grd = grd;
+    }
+
     // 생성자
     public SungJukVO(String name, int kor, int eng, int mat) {
         this.name = name;
