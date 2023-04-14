@@ -16,6 +16,7 @@ public class SungJukV3DAOImpl implements SungJukV3DAO{
     BufferedWriter bw = null;
     BufferedReader br = null;
 
+    // 입력한 성적 데이터를 파일에 저장
     @Override
     public boolean saveSungJuk(SungJukVO sj) {
         // 생성된 성적 데이터를 파일에 저장
