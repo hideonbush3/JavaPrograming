@@ -76,7 +76,7 @@ public class SungJukV3DAOImpl implements SungJukV3DAO{
         return sjdata;
     }
 
-    // 프로그램 종료 시
+    // 수정 or 삭제 작업 끝날때
     // ArrayList에 저장된 모든 성적데이터를 파일에 기록 ( 메모리 -> HDD, SSD)
     @Override
     public void writeSungjuk(List<SungJukVO> sjs) {
