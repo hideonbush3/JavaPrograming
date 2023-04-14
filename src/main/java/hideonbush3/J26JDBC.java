@@ -21,6 +21,7 @@ public class J26JDBC {
     // 이것을 JDBC 드라이버라고 함
     // JDBC드라이버들은 제조사 홈페이지에서
     // 내려받을 수 있음
+    // https://mvnrepository.com/
 
     public static void main(String[] args) {
         // 1. JDBC 드라이버를 메모리에 적재
