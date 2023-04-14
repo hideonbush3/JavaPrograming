@@ -47,7 +47,7 @@ public class J27JDBC {
             if (cnt != 0) System.out.println("데이터 넣기 성공");
 
         } catch (SQLException e) {
-            System.out.println("디비 접속주소나 아이디/비번을 다시 확인하세요!!");
+            System.out.println("디비 접속주소나 아이디/비번, SQL문을 다시 확인하세요!!");
         } finally {
             if(pstmt != null)try{ pstmt.close(); }catch (Exception e){}
             if(conn != null)try{ conn.close(); }catch (Exception e){}
