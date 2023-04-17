@@ -5,12 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class J29JDBC {
-    private static String DRV = "org.mariadb.jdbc.Driver";
-    private static String URL = "jdbc:mariadb://fullstacks.c2yb5bw4urpd.ap-northeast-2.rds.amazonaws.com:3306/fullstacks";
-    private static String USR = "admin";
-    private static String PWD = "fullstack_2023";
+import static hideonbush3.J32JDBCUtil.closeConn;
 
+public class J29JDBC {
     private static String seletcBookSQL = "select * from newbooks where title like ? order by bookno desc;";
 
     public static void main(String[] args) {
@@ -22,20 +19,13 @@ public class J29JDBC {
         System.out.println("조회할 도서명은? ");
         String findbook = sc.nextLine();
 
-        try{
-            // 데이터베이스 관련 라이브러리들을 사용하기위해 mariadb 드라이버를 메모리에 적재
-            Class.forName(DRV);
-        }catch (ClassNotFoundException e){
-            System.out.println("mariadb용 jdbc 드라이버가 없어요!!");
-        }
+        // 데이터베이스 접속
+        Connection conn = J32JDBCUtil.makeConn();
 
-        Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
         try {
-            // 데이터베이스 접속
-            conn = DriverManager.getConnection(URL, USR, PWD);
             // 실행할 SQL문 생성
             pstmt = conn.prepareStatement(seletcBookSQL);
             pstmt.setString(1, "%" + findbook + "%");
@@ -53,9 +43,9 @@ public class J29JDBC {
         } catch (SQLException e) {
             System.out.println("디비 접속주소나 아이디/비번, SQL문을 다시 확인하세요!!");
         } finally {
-            if(rs != null)try{ rs.close(); }catch (Exception e){}
-            if(pstmt != null)try{ pstmt.close(); }catch (Exception e){}
-            if(conn != null)try{ conn.close(); }catch (Exception e){}
+            // static 메서드는 객체 생성없이 바로 사용 가능
+            // 클래스명.메서드();
+            J32JDBCUtil.closeConn(rs, pstmt, conn);
         }
         // 도서정보 출력
         for (Book b : bookdata){

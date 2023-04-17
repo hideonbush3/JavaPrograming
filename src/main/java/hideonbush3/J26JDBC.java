@@ -24,26 +24,17 @@ public class J26JDBC {
     // https://mvnrepository.com/
 
     public static void main(String[] args) {
-        // 1. JDBC 드라이버를 메모리에 적재
-        try {
-            Class.forName("org.mariadb.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.out.println("mariadb용 JDBC 드라이버가 없어요!!");
-        }
-
-        // 2. 데이터베이스 서버에 접속하기
         Connection conn = null;
-        String URL = "jdbc:mariadb://fullstacks.c2yb5bw4urpd.ap-northeast-2.rds.amazonaws.com:3306/fullstacks";
-        String USR = "admin";
-        String PWD = "fullstack_2023";
         try {
-            conn = DriverManager.getConnection(URL, USR, PWD);
-            if (!conn.isClosed())
-                System.out.println("mariadb 접속 성공!");
+            // 1. JDBC 드라이버를 메모리에 적재
+            // 2. 데이터베이스 서버에 접속하기
+            conn = J32JDBCUtil.makeConn();
+
+            if (!conn.isClosed()) System.out.println("mariadb 접속 성공!");
         } catch (SQLException e) {
             System.out.println("디비 접속주소나 아이디/비번을 다시 확인하세요!!");
         } finally {
-            if(conn != null)try{ conn.close(); }catch (Exception e){}
+            J32JDBCUtil.closeConn(null, null, conn);
         }
     }
 }
