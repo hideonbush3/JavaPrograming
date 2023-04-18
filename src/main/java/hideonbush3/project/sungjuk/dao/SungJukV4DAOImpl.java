@@ -13,7 +13,7 @@ public class SungJukV4DAOImpl implements SungJukV4DAO{
     private String insertSQL = "insert into sungjuk(name, kor, eng, mat, tot, avg, grd) values(?,?,?,?,?,?,?)";
     private String selectSQL = "select sjno,name,kor,eng,mat from sungjuk order by sjno";
     private String selectOneSQL = "select * from sungjuk where sjno = ?";
-    private String updateSQL = "update sungjuk set name = ?, kor = ?, eng = ?, mat = ? where sjno = ?";
+    private String updateSQL = "update sungjuk set kor = ?, eng = ?, mat = ?, tot = ?, avg =?, grd =? where sjno = ?";
     private String deleteSQL = "delete from sungjuk where sjno = ?";
 
     @Override
@@ -111,14 +111,23 @@ public class SungJukV4DAOImpl implements SungJukV4DAO{
         try{
             conn = MariaDB.makeConn();
             pstmt = conn.prepareStatement(updateSQL);
+            pstmt.setInt(1, sj.getKor());
+            pstmt.setInt(2, sj.getEng());
+            pstmt.setInt(3, sj.getMat());
+            pstmt.setInt(4, sj.getTot());
+            pstmt.setDouble(5, sj.getAvg());
+            pstmt.setString(6, sj.getGrd() + "");
+            pstmt.setInt(7, sj.getSjno());
+
+            cnt = pstmt.executeUpdate();
 
         } catch (Exception ex){
-            System.out.println("insertSungJuk에서 오류 발생!");
+            System.out.println("updateSungJuk에서 오류 발생!");
             ex.printStackTrace();   // 예외의 자세한 내용출력
         } finally {
             MariaDB.closeConn(null, pstmt, conn);
         }
-        return 0;
+        return cnt;
     }
 
     @Override
