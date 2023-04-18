@@ -94,7 +94,7 @@ public class SungJukV4DAOImpl implements SungJukV4DAO{
             }
 
         } catch (Exception ex){
-            System.out.println("insertSungJuk에서 오류 발생!");
+            System.out.println("selectOneSungJuk에서 오류 발생!");
             ex.printStackTrace();   // 예외의 자세한 내용출력
         } finally {
             MariaDB.closeConn(rs, pstmt, conn);
@@ -130,13 +130,15 @@ public class SungJukV4DAOImpl implements SungJukV4DAO{
         try{
             conn = MariaDB.makeConn();
             pstmt = conn.prepareStatement(deleteSQL);
+            pstmt.setInt(1, sjno);
 
+            cnt = pstmt.executeUpdate();
         } catch (Exception ex){
-            System.out.println("insertSungJuk에서 오류 발생!");
+            System.out.println("deleteSungJuk에서 오류 발생!");
             ex.printStackTrace();   // 예외의 자세한 내용출력
         } finally {
             MariaDB.closeConn(null, pstmt, conn);
         }
-        return 0;
+        return cnt;
     }
 }

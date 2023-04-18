@@ -62,31 +62,22 @@ public class SungJukV4ServiceImpl implements SungJukV1cService {
     }
 
     public void removeSungJuk() {
-        // 이름입력 -> 대상검색 -> 대상제거
-        System.out.print("삭제할 학생이름은? ");
-        String name = sc.next();
-
-        try {
-            for (SungJukVO sj : sjs) {
-                if (sj.getName().equals(name)) {
-                    sjs.remove(sj);  // 대상을 list에서 삭제
-                    System.out.println("\n삭제되었습니다\n");
-                    break;
-                }
-            }
-        } finally {
-
-        }
+        // 번호입력 -> 대상검색 -> 대상제거
+        System.out.print("삭제할 성적데이터 번호는? ");
+        int sjno = sc.nextInt();
+        if(sjdao.deleteSungJuk(sjno) > 0) System.out.println("\n삭제되었습니다\n");
     }
 
     public void modifySungJuk() {
         // 이름입력 -> 대상검색 -> 새로운데이터입력 -> 성적처리
-        System.out.print("수정할 학생이름은? ");
-        String name = sc.next();
+        System.out.print("수정할 성적데이터 번호는? ");
+        int sjno = sc.nextInt();
+        SungJukVO sj = sjdao.selectOneSungJuk(sjno);
+        if(sj != null)
 
         for (int i = 0; i< sjs.size(); i++) {
             try {
-                if (sjs.get(i).getName().equals(name)) {
+                if (sjs.get(i).getSjno() == sjno) {
                     System.out.print("국어는? ");
                     int kor = sc.nextInt();
                     System.out.print("영어은? ");
