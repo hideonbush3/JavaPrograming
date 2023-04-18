@@ -86,7 +86,11 @@ public class SungJukV4DAOImpl implements SungJukV4DAO{
             rs = pstmt.executeQuery();
 
             while(rs.next()){
-                sj = new SungJukVO(rs.get);
+                sj = new SungJukVO(rs.getString(2), rs.getInt(3), rs.getInt(4)
+                        , rs.getInt(5), rs.getInt(6),
+                        rs.getDouble(7),rs.getString(8).charAt(0));
+                sj.setSjno(rs.getInt(1));
+                sj.setRegdate(rs.getString(9));
             }
 
         } catch (Exception ex){
