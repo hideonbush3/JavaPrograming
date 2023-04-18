@@ -11,6 +11,7 @@ package hideonbush3.project.sungjuk.model;
 // 설정해야겠지요? 접근제한자를 깜빡하지 말자!
 public class SungJukVO {
     // 멤버변수
+    private int sjno;
     private String name;
     private int kor;
     private int eng;
@@ -18,6 +19,7 @@ public class SungJukVO {
     private int tot;
     private double avg;
     private char grd;
+    private String regdate;
 
     // 기본생성자
     public SungJukVO() {}
@@ -37,7 +39,14 @@ public class SungJukVO {
         this.mat = mat;
     }
 
-    // 캡슐화한 멤버변수에 접근하기위한 getter, setter 메서드
+    public int getSjno() {
+        return sjno;
+    }
+
+    public void setSjno(int sjno) {
+        this.sjno = sjno;
+    }
+
     public String getName() {
         return name;
     }
@@ -92,6 +101,14 @@ public class SungJukVO {
 
     public void setGrd(char grd) {
         this.grd = grd;
+    }
+
+    public String getRegdate() {
+        return regdate;
+    }
+
+    public void setRegdate(String regdate) {
+        this.regdate = regdate;
     }
 
     @Override

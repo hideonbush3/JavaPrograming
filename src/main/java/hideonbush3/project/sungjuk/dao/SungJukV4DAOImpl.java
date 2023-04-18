@@ -4,7 +4,9 @@ import hideonbush3.project.sungjuk.model.SungJukVO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SungJukV4DAOImpl implements SungJukV4DAO{
@@ -44,40 +46,56 @@ public class SungJukV4DAOImpl implements SungJukV4DAO{
 
     @Override
     public List<SungJukVO> selectSungJuk() {
+        List<SungJukVO> sjdata = new ArrayList<>();
         Connection conn = null;
         PreparedStatement pstmt = null;
-        int cnt = -1;
-
+        ResultSet rs = null;
         try{
             conn = MariaDB.makeConn();
             pstmt = conn.prepareStatement(selectSQL);
+            rs = pstmt.executeQuery();
+
+            while(rs.next()){
+                SungJukVO sj = new SungJukVO(rs.getString(2),
+                        rs.getInt(3), rs.getInt(4),
+                        rs.getInt(5));
+                sj.setSjno(rs.getInt(1));
+                sjdata.add(sj);
+            }
 
         } catch (Exception ex){
-            System.out.println("insertSungJuk에서 오류 발생!");
+            System.out.println("selectSungJuk에서 오류 발생!");
             ex.printStackTrace();   // 예외의 자세한 내용출력
         } finally {
-            MariaDB.closeConn(null, pstmt, conn);
+            MariaDB.closeConn(rs, pstmt, conn);
         }
-        return null;
+        return sjdata;
     }
 
     @Override
     public SungJukVO selectOneSungJuk(int sjno) {
         Connection conn = null;
         PreparedStatement pstmt = null;
-        int cnt = -1;
+        ResultSet rs = null;
+        SungJukVO sj = null;
 
         try{
             conn = MariaDB.makeConn();
             pstmt = conn.prepareStatement(selectOneSQL);
+            pstmt.setInt(1, sjno);
+            rs = pstmt.executeQuery();
+
+            while(rs.next()){
+                sj = new SungJukVO(rs.get);
+            }
 
         } catch (Exception ex){
             System.out.println("insertSungJuk에서 오류 발생!");
             ex.printStackTrace();   // 예외의 자세한 내용출력
         } finally {
-            MariaDB.closeConn(null, pstmt, conn);
+            MariaDB.closeConn(rs, pstmt, conn);
         }
-        return null;
+        return sj;
     }
 
     @Override
