@@ -69,34 +69,26 @@ public class SungJukV4ServiceImpl implements SungJukV1cService {
     }
 
     public void modifySungJuk() {
-        // 이름입력 -> 대상검색 -> 새로운데이터입력 -> 성적처리
-        System.out.print("수정할 성적데이터 번호는? ");
-        int sjno = sc.nextInt();
-        SungJukVO sj = sjdao.selectOneSungJuk(sjno);
-        if(sj != null)
+        // 번호입력 -> 대상검색 -> 새로운데이터입력 -> 성적처리
+        SungJukVO sj = null;
 
-        for (int i = 0; i< sjs.size(); i++) {
-            try {
-                if (sjs.get(i).getSjno() == sjno) {
-                    System.out.print("국어는? ");
-                    int kor = sc.nextInt();
-                    System.out.print("영어은? ");
-                    int eng = sc.nextInt();
-                    System.out.print("수학은? ");
-                    int mat = sc.nextInt();
-
-                    SungJukVO newOne = new SungJukVO(name, kor, eng, mat);
-                    computeSungJuk(newOne);
-                    sjs.set(i, newOne);  // 기존 성적데이터 위치에 새롭게 생성한 객체 대입
-                    System.out.println("\n수정완료!!\n");
-                    break;
-                }
-            } catch (InputMismatchException ex) {
-                System.out.println("\n잘못 입력하셨습니다... 다시 시도하세요!\n");
-                sc.nextLine();
-                return;
-            }
+        try{
+            System.out.print("수정할 성적데이터 번호는? ");
+            int sjno = sc.nextInt();
+            System.out.print("국어는? ");
+            int kor = sc.nextInt();
+            System.out.print("영어는? ");
+            int eng = sc.nextInt();
+            System.out.print("수학은? ");
+            int mat = sc.nextInt();
+            sj = new SungJukVO(null, kor, eng, mat);
+            sj.setSjno(sjno);
+        } catch (InputMismatchException ex){
+            System.out.println("\n잘못 입력하셨습니다.. 다시 시도하세요\n");
         }
+
+        computeSungJuk(sj);
+        if (sjdao.updateSungJuk(sj) > 0) System.out.println("성적 데이터 수정 완료!");
     }
 
     public void readOneSungJuk() {
@@ -164,6 +156,7 @@ public class SungJukV4ServiceImpl implements SungJukV1cService {
     }
 
     public void computeSungJuk(SungJukVO sj) {
+
         sj.setTot( sj.getKor() + sj.getEng() + sj.getMat() );
         sj.setAvg( (double) sj.getTot() / 3 );
 
