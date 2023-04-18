@@ -3,7 +3,6 @@ package hideonbush3;
 import java.sql.*;
 
 public class J34JDBCUtil {
-
     private static String DRV = "oracle.jdbc.driver.OracleDriver";
     private static String URL = "jdbc:oracle:thin:@3.37.89.188:1521:XE";
     private static String USR = "hr";
