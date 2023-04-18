@@ -17,7 +17,7 @@ public class J33JDBC {
         // EMPDAOImpl는 불필요하게 인스턴스 객체로 생성되지 않도록
         // singleton 패턴을 이용해서 단일 객체로만 만들어지도록 함
 //        EMPDAO empdao = new EMPDAOImpl();
-//        EMPDAO empdao = EMPDAOImpl.getInstance();
+        EMPDAO empdao = EMPDAOImpl.getInstance();
         // 사원등록
         /*System.out.println("사원등록을 진행합니다.");
         System.out.print("사원번호는? ");
@@ -250,14 +250,14 @@ class EMPDAOImpl implements EMPDAO{
     private String deleteEmpSQL = " delete from employees where employee_id = ? ";
 
     // 싱글톤 패턴을 위해 선언한 변수
-//    private static EMPDAO instance;
-//
-//    private EMPDAOImpl(){}  // 생성자 호출 금지 - 인스턴스 객체로 생성되지 못하게 막음
-//
-//    public static EMPDAO getInstance() {
-//        if(instance == null) instance = new EMPDAOImpl();
-//        return instance;
-//    }
+    private static EMPDAO instance;
+
+    private EMPDAOImpl(){}  // 생성자 호출 금지 - 인스턴스 객체로 생성되지 못하게 막음
+
+    public static EMPDAO getInstance() {
+        if(instance == null) instance = new EMPDAOImpl();
+        return instance;
+    }
 
     public int insertEmp(EMPVO emp) {
         Connection conn = null;
